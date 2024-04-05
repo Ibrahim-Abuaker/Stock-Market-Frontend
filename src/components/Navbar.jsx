@@ -16,6 +16,8 @@ export default function Navbar({ user, setUser }) {
   };
 
   const { decodedToken } = useJwt(token);
+  console.log("Token:", token);
+  console.log("Decoded Token:", decodedToken);
 
   return (
     <div className="container">
