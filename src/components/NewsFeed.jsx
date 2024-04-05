@@ -10,7 +10,7 @@ export default function NewsFeed({ user }) {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await fetch("http://localhost:8080/news", {
+        const res = await fetch("http://localhost:8090/news", {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
