@@ -3,6 +3,7 @@ import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
 //npm i --legacy-peer-deps react-loading-overlay
 import LoadingOverlay from "react-loading-overlay";
+import config from "../config/Config";
 
 export default function Login({ setUser }) {
   const [email, setEmail] = useState("");
@@ -14,11 +15,12 @@ export default function Login({ setUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = config.base_url + "/user/login";
 
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:8080/user/login", {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

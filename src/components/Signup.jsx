@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 //npm i --legacy-peer-deps react-loading-overlay
 import LoadingOverlay from "react-loading-overlay";
+import config from "../config/Config";
 
 export default function Signup({ setUser }) {
   const [email, setEmail] = useState("");
@@ -9,16 +10,16 @@ export default function Signup({ setUser }) {
   const [username, setUsername] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = config.base_url + "/user/signup";
 
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:8080/user/signup", {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, username }),
