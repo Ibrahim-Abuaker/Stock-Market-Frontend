@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider(props) {
   const [token, setToken] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   //The first useEffect is responsible for initializing the token state
   //when the component is first mounted.
@@ -15,6 +16,7 @@ export default function AuthContextProvider(props) {
     console.log("storedToken", storedToken);
     if (storedToken) {
       setToken(storedToken);
+      setIsAuthenticated(true);
     }
   }, []);
 
@@ -33,6 +35,14 @@ export default function AuthContextProvider(props) {
       localStorage.removeItem("token");
     }
   }, [token]);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     setIsAuthenticated(true);
+  //   } else {
+  //     setIsAuthenticated(false);
+  //   }
+  // }, [token]);
 
   // Let's also create two functions, one to login and one to logout.
   // The login function should take a token as a parameter and use the setToken to
