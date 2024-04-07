@@ -8,6 +8,7 @@ const NewsCard = ({ card }) => {
     <div className={Styles.newsCard}>
       <Link to={card.url} target="_blank" rel="noopener noreferrer">
         <div className={Styles.newsInfo}>
+          <p>{card.source}</p>
           <img
             src={!card.image ? placeholderImageUrl : card.image}
             alt={card.title}
