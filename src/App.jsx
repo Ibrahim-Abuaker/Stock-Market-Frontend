@@ -18,8 +18,9 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} /> */}
+        <Route path="/news" element={<NewsFeed />} />
         <Route
           path="/login"
           element={!token ? <Login /> : <Navigate to="/" />}
@@ -27,10 +28,6 @@ function App() {
         <Route
           path="/signup"
           element={!token ? <Signup /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/news"
-          element={token ? <NewsFeed /> : <Navigate to="/login" />}
         />
 
         <Route path="*" element={<Navigate to="/" />} />

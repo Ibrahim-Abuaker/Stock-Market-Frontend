@@ -1,57 +1,57 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/authContext";
+import Axios from "axios";
+import NewsCard from "./NewsCard";
+import config from "../config/Config";
+import Styles from "./NewsFeed.module.css";
 
-export default function NewsFeed({ user }) {
-  const [newsPosts, setnNewsPosts] = useState([]);
+//I want to style the news feed in NewsFeed.module.css
+//I want to display a grid of newsCard components
+
+const NewsFeed = () => {
+  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    const getData = async () => {
+    const getNews = async () => {
+      console.log("Token:", token);
       try {
-        const res = await fetch("http://localhost:8090/news", {
+        const res = await fetch(config.base_url + "/news", {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        const data = await res.json();
-        setPosts(data);
-        // console.log(data);
+        const newsData = await res.json();
+        setNews(newsData.data);
+        console.log("Here is the newsData", newsData.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setLoading(false);
       }
     };
-    if (token) {
-      getData();
+    if (token || !token) {
+      getNews();
     }
-  }, [token]);
-
-  console.log("HERE", newsPosts);
+  }, []);
+  console.log("HERE is the news", news);
 
   return (
-    <div className="newsPosts">
-      {loading ? ( // Show loading message if loading is true
+    <div className={Styles.container}>
+      {loading ? (
         <h1>Loading...</h1>
+      ) : news.length ? (
+        news.map((card) => (
+          <div className={Styles.newsCard}>
+            {" "}
+            <NewsCard key={card.id} card={card} />{" "}
+          </div>
+        ))
       ) : (
-        <>
-          {newsPosts.length ? (
-            posts.map((newsPost) => (
-              <div
-                key={newsPost._id}
-                style={{ border: "2px solid black", margin: "10px" }}
-              >
-                <h2>{newsPost.title}</h2>
-                <p>{newsPost.body}</p>
-              </div>
-            ))
-          ) : (
-            <h1 style={{ color: "red" }}>No posts found</h1>
-          )}
-        </>
+        <h1>No news available</h1>
       )}
     </div>
   );
-}
+};
+export default NewsFeed;
