@@ -11,7 +11,14 @@ export default function Home() {
     <>
       <h1>Welcome to the Home Page</h1>
       <p>Click below to view the News Feed</p>
-      <Link to="/news">News Feed</Link>;
+      <ul>
+        <li>
+          <Link to="/news">News Feed</Link>
+        </li>
+        <li>
+          <Link to="/search">Search a Stock</Link>
+        </li>
+      </ul>
     </>
   );
 }

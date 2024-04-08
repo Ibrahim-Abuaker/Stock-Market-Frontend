@@ -1,0 +1,10 @@
+.results ul {
+  list-style: none;
+}
+
+.results li {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 4px;
+  color: blue;
+}
