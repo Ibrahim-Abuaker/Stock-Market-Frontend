@@ -8,6 +8,7 @@ import Signup from "./components/Signup";
 import { AuthContext } from "./context/authContext";
 import { useContext } from "react";
 import "./App.css";
+import Search from "./components/Search";
 
 function App() {
   const localAPI = "http://localhost:8090";
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} /> */}
         <Route path="/news" element={<NewsFeed />} />
+        <Route path="/search" element={<Search />} />
         <Route
           path="/login"
           element={!token ? <Login /> : <Navigate to="/" />}

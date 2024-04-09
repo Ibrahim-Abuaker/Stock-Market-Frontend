@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@autocomplete/material-ui": "^0.0.17",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
