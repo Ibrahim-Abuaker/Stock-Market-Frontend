@@ -1,12 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/authContext";
-import Axios from "axios";
 import NewsCard from "./NewsCard";
 import config from "../config/Config";
 import Styles from "./NewsFeed.module.css";
-
-//I want to style the news feed in NewsFeed.module.css
-//I want to display a grid of newsCard components
 
 const NewsFeed = () => {
   const [news, setNews] = useState([]);
@@ -27,7 +23,7 @@ const NewsFeed = () => {
         console.log("Here is the newsData", newsData.data);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setLoading(false);
       }
     };

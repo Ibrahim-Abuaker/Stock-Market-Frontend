@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <h1>Welcome to the Home Page</h1>
       <p>Click below to view the News Feed</p>
-      <Link to="/news">News Feed</Link>;
+      <Link to="/news">News Feed</Link>;<Link to="/search"> Search </Link>
     </>
   );
 }
