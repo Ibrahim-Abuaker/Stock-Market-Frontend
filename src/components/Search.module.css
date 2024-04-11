@@ -1,17 +1,5 @@
-
-.results ul {
-  list-style: none;
-}
-
-.results li {
-  cursor: pointer;
-  font-weight: bold;
-  padding: 4px;
-  color: blue;
-
 .searchContainer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-
 }

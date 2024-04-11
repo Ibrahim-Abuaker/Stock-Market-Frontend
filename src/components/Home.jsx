@@ -11,7 +11,6 @@ export default function Home() {
     <>
       <h1>Welcome to the Home Page</h1>
       <p>Click below to view the News Feed</p>
-
       <ul>
         <li>
           <Link to="/news">News Feed</Link>
@@ -20,9 +19,7 @@ export default function Home() {
           <Link to="/search">Search a Stock</Link>
         </li>
       </ul>
-
-      <Link to="/news">News Feed</Link>;<Link to="/search"> Search </Link>
-
+      <Link to="/news">News Feed</Link>;
     </>
   );
 }
