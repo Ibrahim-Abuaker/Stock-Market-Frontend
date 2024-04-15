@@ -3,6 +3,7 @@ import { AuthContext } from "../context/authContext";
 //npm i --legacy-peer-deps react-loading-overlay
 import LoadingOverlay from "react-loading-overlay";
 import config from "../config/Config";
+import style from "./LoginSignup.module.css";
 
 export default function Signup({ setUser }) {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ export default function Signup({ setUser }) {
 
   return (
     <LoadingOverlay active={isLoading} spinner text="Signing in...">
-      <form className="signup" onSubmit={handleSubmit}>
+      <form className={style.form} onSubmit={handleSubmit}>
         <h3>Sign up</h3>
         <label>username: </label>
         <input
@@ -64,7 +65,7 @@ export default function Signup({ setUser }) {
           value={password}
         />
 
-        <button>Sign up</button>
+        <button className={style.button}>Sign up</button>
         {error && <div className="error">{error}</div>}
       </form>
     </LoadingOverlay>

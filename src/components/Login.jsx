@@ -4,13 +4,13 @@ import { useContext } from "react";
 //npm i --legacy-peer-deps react-loading-overlay
 import LoadingOverlay from "react-loading-overlay";
 import config from "../config/Config";
+import style from "./LoginSignup.module.css";
 
 export default function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ export default function Login({ setUser }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-
+    console.log(response);
     const data = await response.json();
 
     if (!response.ok) {
@@ -34,17 +34,17 @@ export default function Login({ setUser }) {
     }
 
     if (response.ok) {
-      setTimeout(() => {
-        localStorage.setItem("token", data.token);
-        setIsLoading(false);
-        login(data.token);
-      }, 5000);
+      // setTimeout(() => {
+      localStorage.setItem("token", data.token);
+      setIsLoading(false);
+      login(data.token);
+      // }, 1500);
     }
   };
 
   return (
     <LoadingOverlay active={isLoading} spinner text="Logging in...">
-      <form className="login" onSubmit={handleSubmit}>
+      <form className={style.form} onSubmit={handleSubmit}>
         <h3>Log in</h3>
         <label>email: </label>
         <input
@@ -60,7 +60,7 @@ export default function Login({ setUser }) {
           value={password}
         />
 
-        <button>Log in</button>
+        <button className={style.button}>Log in</button>
         {error && <div className="error">{error}</div>}
       </form>
     </LoadingOverlay>
