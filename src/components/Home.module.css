@@ -1,0 +1,40 @@
+/* Home.module.css */
+
+.favouriteSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.tableStyle {
+  width: 70%;
+  border-collapse: collapse;
+  margin-top: 50px;
+  align-items: center;
+  border: 1px solid #dee2e6;
+}
+
+.headerRowStyle {
+  background-color: #72a6da;
+}
+
+.headerCellStyle {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  font-weight: bold;
+}
+
+.rowStyle {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.rowStyle:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.cellStyle {
+  padding: 10px;
+}

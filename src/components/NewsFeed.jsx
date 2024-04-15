@@ -27,9 +27,9 @@ const NewsFeed = () => {
         setLoading(false);
       }
     };
-    if (token || !token) {
-      getNews();
-    }
+    // if (token || !token) {
+    getNews();
+    //    }
   }, []);
   console.log("HERE is the news", news);
 
