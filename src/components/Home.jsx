@@ -8,11 +8,9 @@ import config from "../config/Config";
 import stockData from "../config/StocksData";
 import style from "./Home.module.css";
 import FavResult from "../services/FavResult";
-import Favorites from "./Favorites";
 
 export default function Home() {
   const { token } = useContext(AuthContext);
-  // const [favouritelist, setFavouritelist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFav, setSelectedFav] = useState(null);
   const [favorites, setFavorites] = useState([]); // the user's favourites list
@@ -28,7 +26,7 @@ export default function Home() {
         const token = localStorage.getItem("token");
 
         console.log("token", token);
-        const res = await fetch("http://localhost:8090/favorites", {
+        const res = await fetch(config.base_url + "/favorites", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -68,7 +66,7 @@ export default function Home() {
           price trends
         </p>
       </div>
-      <div className={style.homeContent}>
+      <div className={style.mainContent}>
         <div className={style.favoritesTableBox}>
           <h2>Favorite Stocks</h2>
           <table className={style.favoritesTable}>

@@ -78,6 +78,7 @@ const FavLineChart = ({ pastTwoYears, favInfo, duration }) => {
   //       duration: 2000,
   //     },
   //   };
+  console.log("Here is the lineChartData", lineChartData);
   return (
     <>
       <Line options={options} data={lineChartData} />
