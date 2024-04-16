@@ -13,14 +13,13 @@ export default function AuthContextProvider(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     localStorage.setItem("token", token);
-  //   } else {
-  //     debugger;
-  //     localStorage.removeItem("token");
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
 
   const login = (newToken) => {
     setToken(newToken);
