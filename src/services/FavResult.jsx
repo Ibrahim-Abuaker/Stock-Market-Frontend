@@ -5,7 +5,7 @@ import HomeCard from "../components/HomeCard";
 import Styles from "./FavResult.module.css";
 
 const FavResult = (selectedFav) => {
-  console.log("favstock from FavResult line 8", selectedFav);
+  console.log("favstock from FavResult line 8", selectedFav.stock);
   console.log(
     "Favstock ticker from FavResult line 13",
     selectedFav.selectedFav.ticker
@@ -66,16 +66,16 @@ const FavResult = (selectedFav) => {
         const favHistoricalData = await res.json();
         console.log("Here is the favourite historical data", favHistoricalData);
         setSixMonthAverages(favHistoricalData.sixMonthAverages);
-        // console.log(
-        //   "Here is the Avg six Month",
-        //   favHistoricalData.sixMonthAverages
-        // );
+        console.log(
+          "Here is the Avg six Month",
+          favHistoricalData.sixMonthAverages
+        );
         setPastDay(favHistoricalData.pastDay);
-        //console.log("Here is the pastDay", favHistoricalData.pastDay);
+        console.log("Here is the pastDay", favHistoricalData.pastDay);
         setPastMonth(favHistoricalData.pastMonth);
-        //console.log("Here is the pastMonth", favHistoricalData.pastMonth);
+        console.log("Here is the pastMonth", favHistoricalData.pastMonth);
         setPastTwoYears(favHistoricalData.pastTwoYears);
-        //console.log("Here is the pastTwoYears", favHistoricalData.pastTwoYears);
+        console.log("Here is the pastTwoYears", favHistoricalData.pastTwoYears);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -94,9 +94,46 @@ const FavResult = (selectedFav) => {
         <h1>Loading...</h1>
       ) : favInfo ? (
         <div className={Styles.favInfoCard}>
-          {favInfo && pastDay && (
-            <HomeCard favInfo={favInfo} price={pastDay.adjClose} />
-          )}
+          {favInfo &&
+            pastDay &&
+            sixMonthAverages &&
+            pastMonth &&
+            pastTwoYears && (
+              // pastTwoYears
+              <HomeCard
+                duration={"2 years"}
+                favInfo={favInfo}
+                pastDay={pastDay}
+                price={pastDay.adjClose}
+                sixMonthAverages={sixMonthAverages}
+                pastMonth={pastMonth}
+                pastTwoYears={pastTwoYears}
+              />
+            )}
+          {/* {sixMonthAverages && pastDay && pastMonth && pastTwoYears && (
+            <div>
+              <Grid container spacing={3}>
+                <LineChartCard
+                  pastDataPeriod={pastTwoYears}
+                  favInfo={favInfo}
+                  duration={"2 years"}
+                />
+                <BarChartCard
+                  sixMonthAverages={sixMonthAverages}
+                  favInfo={favInfo}
+                />
+              </Grid>
+              <PriceCard pastDay={pastDay} />
+              <Grid container spacing={3}>
+                <LineChartCard
+                  pastDataPeriod={pastMonth}
+                  stockInfo={stockInfo}
+                  duration={"month"}
+                />
+              </Grid>
+            </div>
+          )} */}
+          {/* <PriceCard pastDay={pastDay} /> */}
         </div>
       ) : (
         <h1>No stock selected</h1>

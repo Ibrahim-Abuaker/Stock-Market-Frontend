@@ -22,33 +22,33 @@ export default function Home() {
   // Get the logged in user's favourites when the page loads
 
   useEffect(() => {
+    const getAllFavourites = async () => {
+      setIsLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+
+        console.log("token", token);
+        const res = await fetch("http://localhost:8090/favorites", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await res.json();
+        if (res.status === 200) {
+          console.log("Home/37 my favourite data: ", data);
+          setFavorites(data);
+        } else {
+          throw new Error(data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     getAllFavourites();
   }, []);
-
-  const getAllFavourites = async () => {
-    setIsLoading(true);
-    try {
-      const token = localStorage.getItem("token");
-
-      console.log("token", token);
-      const res = await fetch("http://localhost:8090/favorites", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      //if (res.status === 200) {
-      console.log("Home/37 my favourite data: ", data);
-      setFavorites(data);
-      // } else {
-      //   throw new Error(data.message);
-      // }
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   console.log(
     favorites.length
@@ -57,15 +57,58 @@ export default function Home() {
   );
   console.log("Random Stocks", stockData);
   console.log("the type of StockData", typeof stockData);
+  console.log("the selectedFav", selectedFav);
+
   return (
-    <>
-      <h1>Welcome to the Home Page</h1>
-      <p>
-        You can check the markets news and search for stocks to view their price
-        trends
-      </p>
-      <div> {selectedFav && <FavResult selectedFav={selectedFav} />}</div>
-      <div className={style.favouriteSection}>
+    <div className={style.container}>
+      <div className={style.welcome}>
+        <h1>Welcome to the Home Page</h1>
+        <p>
+          You can check the market news and search for stocks to view their
+          price trends
+        </p>
+      </div>
+      <div className={style.homeContent}>
+        <div className={style.favoritesTableBox}>
+          <h2>Favorite Stocks</h2>
+          <table className={style.favoritesTable}>
+            <thead>
+              <tr className={style.headerRowStyle}>
+                <th className={style.headerCellStyle}>Name</th>
+                <th className={style.headerCellStyle}>Ticker</th>
+              </tr>
+            </thead>
+            <tbody>
+              {favorites.length ? (
+                (favorites || []).map((favorite, index) => (
+                  <tr
+                    key={index}
+                    className={style.rowStyle}
+                    onClick={() => setSelectedFav(favorite)}
+                  >
+                    <td className={style.cellStyle}>{favorite.stock.name}</td>
+                    <td className={style.cellStyle}>{favorite.stock.ticker}</td>
+                  </tr>
+                ))
+              ) : (
+                <h2>
+                  "No favourite list yet , you can search for a stock and add it
+                  to your favourite list"
+                </h2>
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div className={style.favoritesCharts}>
+          {selectedFav && <FavResult selectedFav={selectedFav.stock} />}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+{
+  /* <div className={style.favouriteSection}>
         <h2>Random Stocks</h2>
         <table className={style.tableStyle}>
           <thead>
@@ -92,8 +135,5 @@ export default function Home() {
               ))}
           </tbody>
         </table>
-      </div>
-      {favorites.length && <Favorites favorites={favorites} />}{" "}
-    </>
-  );
+      </div> */
 }

@@ -7,5 +7,35 @@
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.charts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+}
+.lineChart {
+  width: 40%;
+  height: 40%;
+}
+.barChart {
+  width: 40%;
+  height: 40%;
+}
+.namePrice {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  background-color: #72a6da;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+button {
+  background-color: #72a6da;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   transition: all 0.3s;
 }
