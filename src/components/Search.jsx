@@ -12,6 +12,7 @@ import axios from "axios";
 import config from "../config/Config";
 import InfoCard from "./InfoCard";
 import Favourites from "./Favorites";
+import HashLoader from "react-spinners/HashLoader";
 
 const Search = () => {
   const [value, setValue] = useState(null);
@@ -21,6 +22,16 @@ const Search = () => {
   const [favorites, setFavorites] = useState([]); // the user's favourites list
   const [selectedStock, setSelectedStock] = useState(null);
   const [selectedFavorite, setSelectedFavorite] = useState([]);
+  const [color, setColor] = useState("#72a6da");
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  };
 
   const handleStockSelection = (event, newValue) => {
     setIsLoading(true);
@@ -148,9 +159,14 @@ const Search = () => {
         }}
       />
       {isLoading ? (
-        <div>
-          <h1>Loading...</h1>
-        </div>
+        <HashLoader
+          color={color}
+          loading={isLoading}
+          cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       ) : (
         <>
           {selectedStock && (

@@ -15,15 +15,17 @@
   margin-top: 50px;
 }
 .lineChart {
+  padding-right: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 50%;
 }
 .barChart {
+  padding-left: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 50%;
 }
 .namePrice {
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   font-size: 1.5rem;
@@ -31,6 +33,36 @@
   font-weight: bold;
   margin: 20px;
 }
+/* HomeCard.css */
+
+.priceContainer {
+  position: "relative";
+}
+
+.greenTriangle {
+  position: "absolute";
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: "10px solid green";
+  border-left: "10px solid transparent";
+  margin-right: "20px";
+}
+
+.redTriangle {
+  position: "absolute";
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: "10px solid red";
+  border-bottom: "10px solid transparent";
+  border-left: "10px solid transparent";
+}
+.namePrice h2 {
+  padding: 20px;
+}
+
 button {
   background-color: #72a6da;
   color: white;

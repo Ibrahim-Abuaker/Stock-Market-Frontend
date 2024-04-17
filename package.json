@@ -11,6 +11,11 @@
   },
   "dependencies": {
     "@autocomplete/material-ui": "^0.0.17",
+    "@coreui/icons": "^3.0.1",
+    "@coreui/icons-react": "^2.2.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
@@ -18,8 +23,8 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-jwt": "^1.2.1",
-    "react-loading-overlay": "^1.0.1",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
