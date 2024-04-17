@@ -5,6 +5,7 @@ import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
 import { useJwt } from "react-jwt";
 import style from "./Navbar.module.css";
+import logo from "../assets/logo.jpg";
 
 export default function Navbar({ user, setUser }) {
   const navigate = useNavigate();
@@ -19,8 +20,11 @@ export default function Navbar({ user, setUser }) {
 
   return (
     <div className={style.container}>
-      <div className={style.title}>
-        <Link to="/">Stock Market Dashboard</Link>
+      <div className={style.titleLogo}>
+        <Link to="/">
+          {" "}
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className={style.headerLinks}>
         <button onClick={() => navigate("./news")}>News</button>

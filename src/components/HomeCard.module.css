@@ -8,67 +8,42 @@
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.charts {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 50px;
-}
-.lineChart {
-  padding-right: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 50%;
-}
-.barChart {
-  padding-left: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 50%;
-}
 .namePrice {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   background-color: #72a6da;
   font-weight: bold;
   margin: 20px;
 }
-/* HomeCard.css */
-
+.namePrice h3 {
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .priceContainer {
   position: "relative";
+  display: "flex";
+  background-color: aliceblue;
+}
+.charts {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+.lineChart {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 450px;
+}
+.barChart {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.greenTriangle {
-  position: "absolute";
-  right: 0;
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: "10px solid green";
-  border-left: "10px solid transparent";
-  margin-right: "20px";
-}
-
-.redTriangle {
-  position: "absolute";
-  right: 0;
-  width: 0;
-  height: 0;
-  border-top: "10px solid red";
-  border-bottom: "10px solid transparent";
-  border-left: "10px solid transparent";
-}
-.namePrice h2 {
-  padding: 20px;
-}
-
-button {
-  background-color: #72a6da;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s;
+.description {
+  font-size: 1rem;
+  margin: 20px;
 }

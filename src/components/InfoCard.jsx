@@ -19,34 +19,34 @@ const InfoCard = ({
   console.log("sixMonthAverages from InfoCard", sixMonthAverages);
   console.log("pastTwoYears from InfoCard", pastTwoYears);
   console.log("duration from InfoCard", duration);
-
+  //#63E6BE
   return (
     <div className={Styles.cardContent}>
       <div className={Styles.namePrice}>
-        <h1>{stockInfo.name}</h1>
         <h2>
-          Price: $ {price}{" "}
-          <FontAwesomeIcon icon={faCaretUp} style={{ color: "#63E6BE" }} />
+          ${price}{" "}
+          <FontAwesomeIcon icon={faCaretUp} style={{ color: "#36aa87" }} />
         </h2>
       </div>
-      <div className={Styles.charts}>
-        <div className={Styles.lineChart}>
-          {" "}
-          <SearchLineChart
-            pastTwoYears={pastTwoYears}
-            stockInfo={stockInfo}
-            duration={duration}
-          />
-        </div>
+      <div className={Styles.chartsDescription}>
         <div className={Styles.barChart}>
           <SearchBarChart
             sixMonthAverages={sixMonthAverages}
             stockInfo={stockInfo}
           />
         </div>
+        <div className={Styles.description}>
+          <p>{stockInfo.description}</p>
+        </div>
       </div>
-
-      <p>{stockInfo.description}</p>
+      <div className={Styles.lineChart}>
+        {" "}
+        <SearchLineChart
+          pastTwoYears={pastTwoYears}
+          stockInfo={stockInfo}
+          duration={duration}
+        />
+      </div>
     </div>
   );
 };

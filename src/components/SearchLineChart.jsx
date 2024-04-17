@@ -45,7 +45,7 @@ const SearchLineChart = ({ pastTwoYears, stockInfo, duration }) => {
         datasets: [
           {
             data: pastTwoYears.map(({ adjClose }) => adjClose),
-            label: "Price",
+            label: "Average Price in 2 years",
             borderColor: "#3e95cd",
             backgroundColor: "rgba(75,192,192,0.6)",
           },

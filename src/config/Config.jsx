@@ -1,5 +1,6 @@
 var config = {};
 
-config.base_url = "http://localhost:8090";
+config.base_url = "https://stock-market-backend.onrender.com";
+//"http://localhost:8090";
 
 export default config;

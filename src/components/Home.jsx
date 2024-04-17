@@ -9,6 +9,8 @@ import stockData from "../config/StocksData";
 import style from "./Home.module.css";
 import FavResult from "../services/FavResult";
 import HashLoader from "react-spinners/HashLoader";
+// import Favorites from "../assets/Favorites.png";
+import logo from "../assets/logo.jpg";
 
 export default function Home() {
   const { token } = useContext(AuthContext);
@@ -64,10 +66,10 @@ export default function Home() {
   return (
     <div className={style.container}>
       <div className={style.welcome}>
-        <h1>Welcome to the Home Page</h1>
+        <h1>Welcome to InvestoGuide</h1>
         <p>
-          You can check the market news and search for stocks to view their
-          price trends
+          Where you can check the market news and search for stocks to view
+          their price trends
         </p>
       </div>
       <div className={style.mainContent}>
@@ -90,7 +92,7 @@ export default function Home() {
                   aria-label="Loading Spinner"
                   data-testid="loader"
                 />
-              ) : favorites.length ? (
+              ) : favorites.length && token ? (
                 (favorites || []).map((favorite, index) => (
                   <tr
                     key={index}
@@ -103,48 +105,26 @@ export default function Home() {
                 ))
               ) : (
                 <h2>
-                  "No favourite list yet , you can search for a stock and add it
-                  to your favourite list"
+                  No favourite list yet, you can login, search for a stock add
+                  it to your favourite list.
                 </h2>
               )}
             </tbody>
           </table>
         </div>
-        <div className={style.favoritesCharts}>
-          {selectedFav && <FavResult selectedFav={selectedFav.stock} />}
+        <div className={style.favoritesChartsBox}>
+          {token && selectedFav ? (
+            <div className={style.favoritesCharts}>
+              {selectedFav && <FavResult selectedFav={selectedFav.stock} />}
+            </div>
+          ) : (
+            <div className={style.favoritesChartsMsg}>
+              <h2>Pick one of your favourite stocks</h2>
+              <img src={logo} alt="logo" />
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
-}
-
-{
-  /* <div className={style.favouriteSection}>
-        <h2>Random Stocks</h2>
-        <table className={style.tableStyle}>
-          <thead>
-            <tr className={style.headerRowStyle}>
-              <th className={style.headerCellStyle}>Name</th>
-              <th className={style.headerCellStyle}>Ticker</th>
-              <th className={style.headerCellStyle}>Exchange Market</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stockData
-              // .sort(() => 0.5 - Math.random())
-              .slice(0, 5)
-              .map((stock, index) => (
-                <tr
-                  key={index}
-                  className={style.rowStyle}
-                  onClick={() => setSelectedFav(stock)}
-                >
-                  <td className={style.cellStyle}>{stock.name}</td>
-                  <td className={style.cellStyle}>{stock.ticker}</td>
-                  <td className={style.cellStyle}>{stock.exchangeCode}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div> */
 }
