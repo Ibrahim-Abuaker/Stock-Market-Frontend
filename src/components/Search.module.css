@@ -3,3 +3,24 @@
   justify-content: center;
   margin-top: 20px;
 }
+.afterSearchHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+/* 72a6da */
+.afterSearchHeader button {
+  background-color: #72a6da;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.buttonClicked {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}

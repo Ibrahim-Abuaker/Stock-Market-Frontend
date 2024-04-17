@@ -45,7 +45,7 @@ const FabBarChart = ({ sixMonthAverages, favInfo }) => {
         datasets: [
           {
             data: sixMonthAverages.map(({ value }) => value),
-            label: "Average Stock Price",
+            label: "6 Month Average Price",
             backgroundColor: "rgba(0, 0, 255, 0.3)",
           },
         ],

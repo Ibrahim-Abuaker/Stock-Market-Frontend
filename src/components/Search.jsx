@@ -23,6 +23,7 @@ const Search = () => {
   const [selectedStock, setSelectedStock] = useState(null);
   const [selectedFavorite, setSelectedFavorite] = useState([]);
   const [color, setColor] = useState("#72a6da");
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const override = {
     display: "block",
@@ -50,7 +51,7 @@ const Search = () => {
       try {
         const token = localStorage.getItem("token");
         console.log("token", token);
-        const res = await fetch("http://localhost:8090/favorites", {
+        const res = await fetch(config.base_url + "/favorites", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -81,7 +82,7 @@ const Search = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:8090/favorites", {
+      const res = await fetch(config.base_url + "/favorites", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,42 +102,6 @@ const Search = () => {
     }
   };
   console.log("line 86 my selected favourite : ", selectedFavorite);
-
-  // useEffect(() => {
-  //   const removeFromFavorites = async (favoriteToRemove) => {
-  //     if (!token) {
-  //       return;
-  //     }
-  //     try {
-  //       const res = await fetch("http://localhost:8090/favourites/remove", {
-  //         method: "DELETE",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //         body: JSON.stringify({
-  //           stock: stockToRemove,
-  //         }),
-  //       });
-  //       const data = await res.json();
-  //       if (res.status === 200) {
-  //         setFavourites(
-  //           favourites.filter((stock) => stock.name !== stockToRemove.name)
-  //         );
-  //       } else {
-  //         throw new Error(data.message);
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   //here I want to run the function to remove the selected
-  //   //stock once clicked on the button below
-
-  //   // Call removeFromWatchlist with the stock you want to remove
-  //   // removeFromWatchlist(stockToRemove);
-  // }, [token, favourites]);
-
   return (
     <Container className={Styles.searchContainer}>
       <h1>Welcome to the Search Page</h1>
@@ -170,21 +135,32 @@ const Search = () => {
       ) : (
         <>
           {selectedStock && (
-            <div>
-              <h1>
+            <div className={Styles.afterSearchHeader}>
+              <h2>
                 {selectedStock.name} {selectedStock.ticker}{" "}
-              </h1>
+              </h2>
+              <button
+                className={buttonClicked ? Styles.buttonClicked : ""}
+                onClick={() => {
+                  setButtonClicked(true);
+                  addToFavorites(selectedStock);
+                  console.log("selectedStock", selectedStock);
+                  setTimeout(() => setButtonClicked(false), 200);
+                }}
+              >
+                Add to favorite list
+              </button>{" "}
+              {/* <button
+                onClick={() => {
+                  addToFavorites(selectedStock);
+                  console.log("selectedStock", selectedStock);
+                }}
+              >
+                Add to favorite list
+              </button>{" "} */}
             </div>
           )}
           {selectedStock && <StockResult selectedStock={selectedStock} />}
-          <button
-            onClick={() => {
-              addToFavorites(selectedStock);
-              console.log("selectedStock", selectedStock);
-            }}
-          >
-            Add to favorite list
-          </button>{" "}
         </>
       )}
     </Container>

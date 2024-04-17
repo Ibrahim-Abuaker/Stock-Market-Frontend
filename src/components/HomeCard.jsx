@@ -1,6 +1,8 @@
 import Styles from "./HomeCard.module.css";
 import FavBarChart from "./FavBarChart";
 import FavLineChart from "./FavLineChart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 const HomeCard = ({
   favInfo,
@@ -23,12 +25,11 @@ const HomeCard = ({
     <div className={Styles.cardContent}>
       <div className={Styles.namePrice}>
         {" "}
-        <h2> {favInfo.name} </h2>
-        <h2 className={Styles.priceContainer}>
-          {pastDay.adjClose}
-          <span className={Styles.greenTriangle}></span>
-          <span className={Styles.redTriangle}></span>
-        </h2>
+        <h3> {favInfo.name} </h3>
+        <h3 className={Styles.priceContainer}>
+          ${pastDay.adjClose}
+          <FontAwesomeIcon icon={faCaretUp} style={{ color: "#36aa87" }} />
+        </h3>
       </div>{" "}
       <div className={Styles.charts}>
         <div className={Styles.lineChart}>

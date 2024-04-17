@@ -12,6 +12,7 @@ import Search from "./components/Search";
 function App() {
   const localAPI = "http://localhost:8090";
   const deployedAPI = "https://stock-market-backend.onrender.com";
+
   const { token } = useContext(AuthContext);
 
   return (
