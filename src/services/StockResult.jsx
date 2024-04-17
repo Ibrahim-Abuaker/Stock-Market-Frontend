@@ -3,6 +3,7 @@ import { AuthContext } from "../context/authContext";
 import config from "../config/Config";
 import InfoCard from "../components/InfoCard";
 import Styles from "./StockResult.module.css";
+import HashLoader from "react-spinners/HashLoader";
 
 const StockResult = (selectedStock) => {
   // console.log("Here is the selected stock from StockResult", selectedStock);
@@ -19,6 +20,16 @@ const StockResult = (selectedStock) => {
   const [pastTwoYears, setPastTwoYears] = useState();
   const ticker = selectedStock.selectedStock.ticker;
   const [isLoading, setIsLoading] = useState(false);
+  const [color, setColor] = useState("#72a6da");
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  };
 
   //..............................................
 
@@ -88,12 +99,31 @@ const StockResult = (selectedStock) => {
   return (
     <div className={Styles.root}>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <HashLoader
+          color={color}
+          loading={isLoading}
+          cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       ) : stockInfo ? (
         <div className={Styles.resultInfoCard}>
-          {stockInfo && pastDay && (
-            <InfoCard stockInfo={stockInfo} price={pastDay.adjClose} />
-          )}
+          {stockInfo &&
+            pastDay &&
+            sixMonthAverages &&
+            pastMonth &&
+            pastTwoYears && (
+              <InfoCard
+                duration={"2 years"}
+                stockInfo={stockInfo}
+                pastDay={pastDay}
+                price={pastDay.adjClose}
+                sixMonthAverages={sixMonthAverages}
+                pastMonth={pastMonth}
+                pastTwoYears={pastTwoYears}
+              />
+            )}
         </div>
       ) : (
         <h1>No stock selected</h1>

@@ -24,7 +24,11 @@ const HomeCard = ({
       <div className={Styles.namePrice}>
         {" "}
         <h2> {favInfo.name} </h2>
-        <h2>{pastDay.adjClose}</h2>
+        <h2 className={Styles.priceContainer}>
+          {pastDay.adjClose}
+          <span className={Styles.greenTriangle}></span>
+          <span className={Styles.redTriangle}></span>
+        </h2>
       </div>{" "}
       <div className={Styles.charts}>
         <div className={Styles.lineChart}>

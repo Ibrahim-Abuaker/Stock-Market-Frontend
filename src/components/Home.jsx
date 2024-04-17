@@ -8,16 +8,20 @@ import config from "../config/Config";
 import stockData from "../config/StocksData";
 import style from "./Home.module.css";
 import FavResult from "../services/FavResult";
+import HashLoader from "react-spinners/HashLoader";
 
 export default function Home() {
   const { token } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFav, setSelectedFav] = useState(null);
-  const [favorites, setFavorites] = useState([]); // the user's favourites list
+  const [favorites, setFavorites] = useState([]);
+  const [color, setColor] = useState("#72a6da");
 
-  console.log("Here is the new selectedFav value stock", selectedFav);
-
-  // Get the logged in user's favourites when the page loads
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
 
   useEffect(() => {
     const getAllFavourites = async () => {
@@ -77,7 +81,16 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {favorites.length ? (
+              {isLoading ? (
+                <HashLoader
+                  color={color}
+                  loading={isLoading}
+                  cssOverride={override}
+                  size={150}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : favorites.length ? (
                 (favorites || []).map((favorite, index) => (
                   <tr
                     key={index}

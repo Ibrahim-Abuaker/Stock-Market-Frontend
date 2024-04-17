@@ -3,11 +3,22 @@ import { AuthContext } from "../context/authContext";
 import NewsCard from "./NewsCard";
 import config from "../config/Config";
 import Styles from "./NewsFeed.module.css";
+import HashLoader from "react-spinners/HashLoader";
 
 const NewsFeed = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const { token } = useContext(AuthContext);
+  const [color, setColor] = useState("#72a6da");
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  };
 
   useEffect(() => {
     const getNews = async () => {
@@ -36,7 +47,14 @@ const NewsFeed = () => {
   return (
     <div className={Styles.container}>
       {loading ? (
-        <h1>Loading...</h1>
+        <HashLoader
+          color={color}
+          loading={loading}
+          cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       ) : news.length ? (
         news.map((card) => (
           <div className={Styles.newsCard}>

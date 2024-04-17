@@ -20,9 +20,9 @@ ChartJS.register(
   Legend
 );
 
-const FavLineChart = ({ pastTwoYears, favInfo, duration }) => {
+const SearchLineChart = ({ pastTwoYears, stockInfo, duration }) => {
   console.log("Here is the pastDataPeriod", pastTwoYears);
-  console.log("Here is the favInfo", favInfo);
+  console.log("Here is the favInfo", stockInfo);
   console.log("Here is the duration", duration);
 
   const options = {};
@@ -39,20 +39,21 @@ const FavLineChart = ({ pastTwoYears, favInfo, duration }) => {
     return [month, day].join("-");
   };
   const lineChartData =
-    pastTwoYears && pastTwoYears.length
-      ? {
-          labels: pastTwoYears.map(({ date }, i) => formatDate(date)),
-          datasets: [
-            {
-              data: pastTwoYears.map(({ adjClose }) => adjClose),
-              label: "Price",
-              borderColor: "#3e95cd",
-              backgroundColor: "rgba(75,192,192,0.6)",
-            },
-          ],
-        }
-      : null;
-
+    pastTwoYears && pastTwoYears.length ? (
+      {
+        labels: pastTwoYears.map(({ date }, i) => formatDate(date)),
+        datasets: [
+          {
+            data: pastTwoYears.map(({ adjClose }) => adjClose),
+            label: "Price",
+            borderColor: "#3e95cd",
+            backgroundColor: "rgba(75,192,192,0.6)",
+          },
+        ],
+      }
+    ) : (
+      <h2>No Enough Data For This Stock</h2>
+    );
   console.log("Here is the lineChartData", lineChartData);
   return (
     <>
@@ -61,4 +62,4 @@ const FavLineChart = ({ pastTwoYears, favInfo, duration }) => {
   );
 };
 
-export default FavLineChart;
+export default SearchLineChart;
