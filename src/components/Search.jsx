@@ -144,7 +144,7 @@ const Search = () => {
                 onClick={() => {
                   setButtonClicked(true);
                   addToFavorites(selectedStock);
-                  console.log("selectedStock", selectedStock);
+                  alert("Added to favorites list");
                   setTimeout(() => setButtonClicked(false), 200);
                 }}
               >
